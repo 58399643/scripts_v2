@@ -672,6 +672,14 @@ func (j JdFarm) turntable() {
 	}
 }
 
+// GetHelpKey
+// @Description: 返回助力码 key
+// @receiver j
+// @return interface{}
+func (j JdFarm) GetHelpKey() interface{} {
+	return "jd_farm"
+}
+
 // Exec
 // @Description: 程序入口
 // @receiver j
@@ -684,6 +692,7 @@ func (j JdFarm) Exec() {
 
 	awardName := gjson.Get(farmInfo, `name`)
 	shareCode := gjson.Get(farmInfo, `shareCode`).String()
+	j.SaveHelpCode(shareCode)
 	j.Println(fmt.Sprintf("奖品名称-> 《%s》, \n\t\t\t助力码-> 《%s》", awardName, shareCode))
 
 	j.doDailyTasks()

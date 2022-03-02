@@ -6,3 +6,23 @@
 // @Description:
 
 package database
+
+import (
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"scripts/global"
+	"scripts/models"
+)
+
+var DB *gorm.DB
+
+func init() {
+	var err error
+
+	DB, err = gorm.Open("sqlite3", "sqlite3.db")
+
+	if err != nil {
+		global.Log.Errorln("Can't not connect database.")
+	}
+	DB.AutoMigrate(&models.Code{})
+}

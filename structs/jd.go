@@ -13,6 +13,7 @@ import (
 	"reflect"
 	"scripts/config/jd"
 	"scripts/constracts"
+	"scripts/repositories"
 	"strings"
 	"sync"
 )
@@ -52,6 +53,20 @@ func (jd JdBase) GetHelpKey() interface{} {
 func (jd JdBase) Println(args ...interface{}) {
 	fmt.Printf("账号%d(%s):", jd.User.Sort, jd.User.Username)
 	fmt.Println(args...)
+}
+
+// SaveHelpCode
+// @Description: 保存助力码
+// @receiver jd
+// @param code
+func (jd JdBase) SaveHelpCode(code string) {
+	data := map[string]interface{}{
+		"account": jd.User.Username,
+		"key":     jd.GetHelpKey(),
+		"val":     code,
+		"sort":    jd.User.Sort,
+	}
+	repositories.CodeRepository{}.Create(data)
 }
 
 // RunJd

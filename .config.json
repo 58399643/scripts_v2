@@ -3,6 +3,9 @@
     "directory": "storage/logs",
     "filename": "logger.log"
   },
+  "database": {
+    "name": "sqlite3.db"
+  },
   "jd": {
     "cookies": [
       "pt_pin=jd_29a;pt_key=AAJhyW;"
